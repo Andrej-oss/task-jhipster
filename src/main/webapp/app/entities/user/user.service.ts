@@ -7,6 +7,7 @@ import { createRequestOption } from 'app/core/request/request-util';
 import { isPresent } from 'app/core/util/operators';
 import { Pagination } from 'app/core/request/request.model';
 import { IUser, getUserIdentifier } from './user.model';
+import { User } from 'app/admin/user-management/user-management.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -34,5 +35,8 @@ export class UserService {
       return [...usersToAdd, ...userCollection];
     }
     return userCollection;
+  }
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>('api/user');
   }
 }

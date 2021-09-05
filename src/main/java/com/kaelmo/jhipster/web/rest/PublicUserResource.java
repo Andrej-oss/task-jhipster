@@ -1,6 +1,7 @@
 package com.kaelmo.jhipster.web.rest;
 
 import com.kaelmo.jhipster.service.UserService;
+import com.kaelmo.jhipster.service.dto.AdminUserDTO;
 import com.kaelmo.jhipster.service.dto.UserDTO;
 import java.util.*;
 import java.util.Collections;
@@ -61,5 +62,10 @@ public class PublicUserResource {
     @GetMapping("/authorities")
     public List<String> getAuthorities() {
         return userService.getAuthorities();
+    }
+
+    @GetMapping("/user")
+    public List<AdminUserDTO> getAllUsers() {
+        return userService.getUsers();
     }
 }

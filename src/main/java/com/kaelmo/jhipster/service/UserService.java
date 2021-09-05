@@ -299,6 +299,13 @@ public class UserService {
         return userRepository.findAllByIdNotNullAndActivatedIsTrue(pageable).map(UserDTO::new);
     }
 
+    // For returning all users without pagination
+    @Transactional(readOnly = true)
+    public List<AdminUserDTO> getUsers() {
+        log.info("Handling getting all users");
+        return userRepository.findAll().stream().map(AdminUserDTO::new).collect(Collectors.toList());
+    }
+
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthoritiesByLogin(String login) {
         return userRepository.findOneWithAuthoritiesByLogin(login);
