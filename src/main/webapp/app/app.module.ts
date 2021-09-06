@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './users/user-form/user-form.component';
+import { UserFormModule } from './users/user-form/user-form.module';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { UserFormComponent } from './users/user-form/user-form.component';
     SharedModule,
     HomeModule,
     UserModule,
+    UserFormModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     EntityRoutingModule,
     AppRoutingModule,
@@ -55,7 +57,7 @@ import { UserFormComponent } from './users/user-form/user-form.component';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, UserFormComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   bootstrap: [MainComponent],
   exports: [],
 })

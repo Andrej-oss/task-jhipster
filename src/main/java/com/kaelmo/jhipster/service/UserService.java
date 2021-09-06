@@ -349,4 +349,10 @@ public class UserService {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
         }
     }
+
+    public AdminUserDTO getUser(long id) {
+        log.debug("Handling getting user by user id " + id);
+        final User one = userRepository.getOne(id);
+        return new AdminUserDTO(one);
+    }
 }

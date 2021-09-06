@@ -39,4 +39,7 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>('api/user');
   }
+  getOneUser(id: number): Observable<User> {
+    return this.http.get<User>(`api/user/${id}`);
+  }
 }

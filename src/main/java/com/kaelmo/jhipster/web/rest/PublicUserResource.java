@@ -68,4 +68,9 @@ public class PublicUserResource {
     public List<AdminUserDTO> getAllUsers() {
         return userService.getUsers();
     }
+
+    @GetMapping("/user/{id}")
+    public AdminUserDTO getUserById(@PathVariable long id) {
+        return userService.getUser(id);
+    }
 }

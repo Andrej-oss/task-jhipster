@@ -1,0 +1,128 @@
+<mat-card class="registration-card">
+  <h4>Registration</h4>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="alert alert-success" *ngIf="success"><strong>Registration saved!</strong> Please check your email for confirmation.</div>
+
+      <div class="alert alert-danger" *ngIf="error"><strong>Registration failed!</strong> Please try again later.</div>
+
+      <div class="alert alert-danger" *ngIf="errorUserExists">
+        <strong>Login name already registered!</strong> Please choose another one.
+      </div>
+
+      <div class="alert alert-danger" *ngIf="errorEmailExists"><strong>Email is already in use!</strong> Please choose another one.</div>
+
+      <div class="alert alert-danger" *ngIf="doNotMatch">The password and its confirmation do not match!</div>
+    </div>
+  </div>
+  <form [formGroup]="userForm" style="margin: 2% 25% 5% 25%">
+    <ng-template matStepLabel style="color: white">Fill out your name</ng-template>
+    <mat-form-field style="background-color: gray; width: 220px; margin-bottom: 2%" floatLabel="never">
+      <mat-label> Login </mat-label>
+      <input matInput placeholder="Login" [formControl]="login" required />
+    </mat-form-field>
+    <div *ngIf="userForm.get('login')!.invalid && (userForm.get('login')!.dirty || userForm.get('login')!.touched)">
+      <small class="form-text text-danger" *ngIf="userForm.get('login')?.errors?.required"> Your username is required. </small>
+
+      <small class="form-text text-danger" *ngIf="userForm.get('login')?.errors?.minlength">
+        Your username is required to be at least 1 character.
+      </small>
+
+      <small class="form-text text-danger" *ngIf="userForm.get('login')?.errors?.maxlength">
+        Your username cannot be longer than 50 characters.
+      </small>
+    </div>
+    <div *ngIf="!id">
+      <mat-form-field style="background-color: gray; margin-bottom: 2%" floatLabel="never">
+        <mat-label> Enter your password </mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <jhi-password-strength-bar [passwordToCheck]="userForm.get('password')!.value"></jhi-password-strength-bar>
+      <div *ngIf="userForm.get('password')!.invalid && (userForm.get('password')!.dirty || userForm.get('password')!.touched)">
+        <small class="form-text text-danger" *ngIf="userForm.get('password')?.errors?.required"> Your password is required. </small>
+
+        <small class="form-text text-danger" *ngIf="userForm.get('password')?.errors?.minlength">
+          Your password is required to be at least 4 characters.
+        </small>
+
+        <small class="form-text text-danger" *ngIf="userForm.get('password')?.errors?.maxlength">
+          Your password cannot be longer than 50 characters.
+        </small>
+      </div>
+      <mat-form-field style="background-color: gray; margin-bottom: 2%" floatLabel="never">
+        <mat-label> Confirm your password </mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="confirmPassword" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div
+        *ngIf="
+          userForm.get('confirmPassword')!.invalid && (userForm.get('confirmPassword')!.dirty || userForm.get('confirmPassword')!.touched)
+        "
+      >
+        <small class="form-text text-danger" *ngIf="userForm.get('confirmPassword')?.errors?.required">
+          Your confirmation password is required.
+        </small>
+        <small class="form-text text-danger" *ngIf="userForm.get('confirmPassword')?.errors?.minlength">
+          Your confirmation password is required to be at least 4 characters.
+        </small>
+        <small class="form-text text-danger" *ngIf="userForm.get('confirmPassword')?.errors?.maxlength">
+          Your confirmation password cannot be longer than 50 characters.
+        </small>
+      </div>
+    </div>
+    <mat-form-field style="background-color: gray; width: 220px; margin-bottom: 2%" floatLabel="never">
+      <mat-label> Email </mat-label>
+      <input matInput type="email" [formControl]="email" placeholder="Example@gmail.com" required />
+    </mat-form-field>
+    <div *ngIf="userForm.get('email')!.invalid && (userForm.get('email')!.dirty || userForm.get('email')!.touched)">
+      <small class="form-text text-danger" *ngIf="userForm.get('email')?.errors?.required"> Your email is required. </small>
+
+      <small class="form-text text-danger" *ngIf="userForm.get('email')?.errors?.invalid"> Your email is invalid. </small>
+
+      <small class="form-text text-danger" *ngIf="userForm.get('email')?.errors?.minlength">
+        Your email is required to be at least 5 characters.
+      </small>
+
+      <small class="form-text text-danger" *ngIf="userForm.get('email')?.errors?.maxlength">
+        Your email cannot be longer than 100 characters.
+      </small>
+    </div>
+    <div *ngIf="id > 0">
+      <mat-form-field style="background-color: gray; width: 220px; margin-bottom: 2%" floatLabel="never">
+        <mat-label> Name </mat-label>
+        <input matInput type="text" [formControl]="name" placeholder="Name" required />
+      </mat-form-field>
+      <div *ngIf="userForm.get('name')!.invalid && (userForm.get('name')!.dirty || userForm.get('name')!.touched)">
+        <small class="form-text text-danger" *ngIf="userForm.get('name')?.errors?.required"> Your First Name is required. </small>
+
+        <small class="form-text text-danger" *ngIf="userForm.get('name')?.errors?.invalid"> Your First Name is invalid. </small>
+        <small class="form-text text-danger" *ngIf="userForm.get('name')?.errors?.maxlength">
+          Your First Name cannot be longer than 30 characters.
+        </small>
+      </div>
+      <mat-form-field style="background-color: gray; width: 220px; margin-bottom: 2%" floatLabel="never">
+        <mat-label> Last Name </mat-label>
+        <input matInput type="text" [formControl]="lastName" placeholder="Last Name" required />
+      </mat-form-field>
+      <div *ngIf="userForm.get('lastName')!.invalid && (userForm.get('lastName')!.dirty || userForm.get('lastName')!.touched)">
+        <small class="form-text text-danger" *ngIf="userForm.get('lastName')?.errors?.required"> Your Last Name is required. </small>
+
+        <small class="form-text text-danger" *ngIf="userForm.get('lastName')?.errors?.invalid"> Your Last Name is invalid. </small>
+        <small class="form-text text-danger" *ngIf="userForm.get('lastName')?.errors?.maxlength">
+          Your Last Name cannot be longer than 30 characters.
+        </small>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="!id">
+    <button mat-button (click)="onSave(userForm)" [disabled]="userForm.invalid">Save</button>
+  </div>
+  <div *ngIf="!!id">
+    <button mat-button (click)="onUpdate(userForm)">Update</button>
+  </div>
+</mat-card>

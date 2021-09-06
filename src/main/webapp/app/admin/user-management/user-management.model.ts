@@ -1,8 +1,8 @@
 export interface IUser {
   id?: number;
   login?: string;
-  firstName?: string | null;
-  lastName?: string | null;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   activated?: boolean;
   langKey?: string;
@@ -17,8 +17,8 @@ export class User implements IUser {
   constructor(
     public id?: number,
     public login?: string,
-    public firstName?: string | null,
-    public lastName?: string | null,
+    public firstName?: string,
+    public lastName?: string,
     public email?: string,
     public activated?: boolean,
     public langKey?: string,
@@ -28,4 +28,11 @@ export class User implements IUser {
     public lastModifiedBy?: string,
     public lastModifiedDate?: Date
   ) {}
+}
+export class MyUserDefault implements IUser {
+  email = '';
+  firstName = '';
+  id = 0;
+  lastName = '';
+  login = '';
 }

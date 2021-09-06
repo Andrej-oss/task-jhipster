@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../admin/user-management/user-management.model';
 import { UserService } from '../../entities/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-user-table',
@@ -24,12 +25,13 @@ export class UserTableComponent implements OnInit {
     'authorities',
     'created by',
     'created',
+    'options',
   ];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe(users => {
@@ -45,5 +47,14 @@ export class UserTableComponent implements OnInit {
 
   applyFilter(): void {
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  onEditUser(id: number): void {
+    // eslint-disable-next-line no-console
+    this.router.navigate([`registration/${id}`]).then(value => console.log(id));
+  }
+
+  createUser(): void {
+    this.router.navigate(['registration']);
   }
 }
