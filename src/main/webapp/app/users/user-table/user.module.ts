@@ -7,6 +7,6 @@ import { MaterialModule } from '../../shared/material.module';
 
 @NgModule({
   declarations: [UserTableComponent],
-  imports: [SharedModule, MaterialModule, RouterModule.forChild([USER_ROUTE])],
+  imports: [SharedModule, RouterModule.forChild([USER_ROUTE]), MaterialModule],
 })
 export class UserModule {}

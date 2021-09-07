@@ -1,0 +1,31 @@
+<mat-card class="card-auth">
+  <h4>Sign In</h4>
+  <form [formGroup]="userAuth">
+    <mat-form-field style="width: 220px; margin-bottom: 2%" floatLabel="never">
+      <mat-label style="color: white"> Login </mat-label>
+      <input matInput style="background-color: grey" placeholder="Login" [formControl]="login" required />
+    </mat-form-field>
+    <mat-form-field style="background-color: gray; margin-bottom: 2%" floatLabel="never">
+      <mat-label> Enter your password </mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" />
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <button
+    mat-stroked-button
+    aria-label="Show an example snack-bar"
+    (click)="onAuthenticate(userAuth)"
+    [disabled]="userAuth.invalid || userAuth.disabled"
+    style="left: 70%; background-color: white; margin-top: 5%"
+  >
+    Login
+  </button>
+  <div *ngIf="error" class="card-auth-error">
+    <a>{{ error }}</a>
+  </div>
+  <div class="card-auth-link-reg">
+    <a (click)="onRegistration()"> Don't registered? </a>
+  </div>
+</mat-card>

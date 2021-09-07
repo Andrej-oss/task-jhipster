@@ -20,14 +20,14 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "@angular-eslint/component-selector": [
-      "error",
-      {
-        "type": "element",
-        "prefix": "jhi",
-        "style": "kebab-case"
-      }
-    ],
+    //    "@angular-eslint/component-selector": [
+    //      "error",
+    ////      {
+    ////        "type": "element",
+    ////        "prefix": "jhi",
+    ////        "style": "kebab-case"
+    ////      }
+    //    ],
     "@angular-eslint/directive-selector": [
       "error",
       {

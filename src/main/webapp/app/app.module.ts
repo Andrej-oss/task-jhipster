@@ -31,6 +31,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserFormModule } from './users/user-form/user-form.module';
+import { UserAuthFormComponent } from './users/user-auth-form/user-auth-form.component';
+import { MaterialModule } from './shared/material.module';
+import { UserAuthModule } from './users/user-auth-form/user-auth.module';
 
 @NgModule({
   imports: [
@@ -43,6 +46,7 @@ import { UserFormModule } from './users/user-form/user-form.module';
     HomeModule,
     UserModule,
     UserFormModule,
+    UserAuthModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     EntityRoutingModule,
     AppRoutingModule,

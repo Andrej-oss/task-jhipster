@@ -9,6 +9,6 @@ import { AccountModule } from '../../account/account.module';
 
 @NgModule({
   declarations: [UserFormComponent],
-  imports: [SharedModule, MaterialModule, RouterModule.forChild([USER_FORM_ROUTE, USER_FORM_UPDATE_ROUTE]), AccountModule],
+  imports: [SharedModule, RouterModule.forChild([USER_FORM_ROUTE, USER_FORM_UPDATE_ROUTE]), AccountModule, MaterialModule],
 })
 export class UserFormModule {}
