@@ -41,7 +41,7 @@ export class UserAuthFormComponent implements OnInit {
       err => {
         this.userAuth.enable();
         this.userAuth.reset();
-        this.error = err;
+        this.error = err.error.detail;
       }
     );
   }
