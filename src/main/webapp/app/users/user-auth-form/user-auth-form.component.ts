@@ -35,7 +35,7 @@ export class UserAuthFormComponent implements OnInit {
     };
     this.userAuth.disable();
     this.loginService.login(this.credential).subscribe(
-      data => {
+      () => {
         this.router.navigate(['/']);
       },
       err => {

@@ -34,10 +34,6 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           path: 'user',
           loadChildren: () => import('./users/user-table/user.module').then(m => m.UserModule),
         },
-        // {
-        //     path: 'registration/:id',
-        //     loadChildren: () => import('./users/user-form/user-form.module').then(m => m.UserFormModule),
-        // },
         ...LAYOUT_ROUTES,
       ],
       { enableTracing: DEBUG_INFO_ENABLED }

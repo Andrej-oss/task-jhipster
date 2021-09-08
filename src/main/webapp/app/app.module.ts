@@ -29,11 +29,10 @@ import { UserModule } from './users/user-table/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserFormModule } from './users/user-form/user-form.module';
-import { UserAuthFormComponent } from './users/user-auth-form/user-auth-form.component';
-import { MaterialModule } from './shared/material.module';
 import { UserAuthModule } from './users/user-auth-form/user-auth.module';
+import { UserCardComponent } from './users/user-card/user-card.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -54,6 +53,7 @@ import { UserAuthModule } from './users/user-auth-form/user-auth.module';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    MatButtonModule,
   ],
   providers: [
     Title,
@@ -61,7 +61,7 @@ import { UserAuthModule } from './users/user-auth-form/user-auth.module';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, UserCardComponent],
   bootstrap: [MainComponent],
   exports: [],
 })

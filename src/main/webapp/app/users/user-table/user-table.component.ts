@@ -5,6 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../admin/user-management/user-management.model';
 import { UserService } from '../../entities/user/user.service';
 import { Router } from '@angular/router';
+import { UserManagementDeleteDialogComponent } from '../../admin/user-management/delete/user-management-delete-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserCardComponent } from '../user-card/user-card.component';
 
 @Component({
   selector: 'jhi-user-table',
@@ -31,7 +34,7 @@ export class UserTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private modalService: NgbModal, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe(users => {
@@ -56,5 +59,10 @@ export class UserTableComponent implements OnInit {
 
   createUser(): void {
     this.router.navigate(['registration']);
+  }
+
+  onDetail(user: User): void {
+    const modalRef = this.modalService.open(UserCardComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.user = user;
   }
 }
