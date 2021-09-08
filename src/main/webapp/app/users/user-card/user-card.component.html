@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h3>{{ user.login }}</h3>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="d-flex justify-content-start">
+    <img style="width: 200px; height: 200px; border-radius: 50%; margin: 5% 25% 5% 5%" src="../../../content/images/profil.jpg" />
+    <div class="user-detail-content" *ngIf="user">
+      <h4>login: {{ user.login }}</h4>
+      <h4>name: {{ user.firstName }}</h4>
+      <h4>last name: {{ user.lastName }}</h4>
+      <h4>email: {{ user.email }}</h4>
+      <h4>language key: {{ user.langKey }}</h4>
+      <div *ngFor="let authority of user.authorities">
+        <h4>authority: {{ authority }}</h4>
+      </div>
+      <h4>created date: {{ user.createdDate | date: 'short' }}</h4>
+      <h4>created by: {{ user.createdBy }}</h4>
+      <h4>{{ user.activated ? 'activated' : 'not activated' }}</h4>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button mat-button [routerLink]="'registration/' + user.id" (click)="activeModal.dismiss('Cross click')">Edit</button>
+</div>
